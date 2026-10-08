@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma Educativa Universal - MVP Sprint 1</title>
+    <style>
+        /* ===================================================
+           ESTILOS GENERALES Y CONFIGURACIÓN
+           =================================================== */
+        :root {
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #212529;
+            --primary-color: #0d6efd;
+            --border-color: #ccc;
+            --font-size: 16px;
+        }
+
+        /* US-01: Tema de Alto Contraste (Cumplimiento WCAG 2.1 AA) */
+        body.high-contrast {
+            --bg-color: #000000;
+            --card-bg: #121212;
+            --text-color: #ffff00; /* Texto amarillo fosforescente sobre fondo negro */
+            --primary-color: #00ffff;
+            --border-color: #ffffff;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: var(--font-size);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        header {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* US-01: Toolbar de Accesibilidad */
+        .accessibility-bar {
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 8px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        body.high-contrast button {
+            color: #000000;
+        }
+
+        button:focus, select:focus {
+            outline: 3px solid #ff9900; /* Enfoque visible para navegación por teclado */
+        }
+
+        /* US-05: Filtros por Edad/Nivel */
+        .filter-section {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        select {
+            padding: 8px;
+            font-size: 1em;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        /* Grid de Artículos Educativos */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        body.high-contrast .badge {
+            color: #000;
+        }
+
+        /* US-02: Botón de Descarga PDF */
+        .btn-download {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 12px;
+            background-color: #198754;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .pdf-size {
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Plataforma Educativa Universal</h1>
+        <p>Prototipo Funcional - Incremento Sprint 1 (MVP)</p>
+    </header>
+
+    <!-- US-01: BARRA DE ACCESIBILIDAD -->
+    <section class="accessibility-bar" aria-label="Herramientas de accesibilidad">
+        <strong>Opciones de Accesibilidad (US-01):</strong>
+        <button onclick="adjustFontSize(2)" aria-label="Aumentar tamaño de letra">A+</button>
+        <button onclick="adjustFontSize(-2)" aria-label="Disminuir tamaño de letra">A-</button>
+        <button onclick="resetFontSize()" aria-label="Restablecer tamaño de letra">A (Normal)</button>
+        <button onclick="toggleHighContrast()" aria-label="Alternar alto contraste">Modo Alto Contraste</button>
+    </section>
+
+    <!-- US-05: FILTRO DE CONTENIDO POR EDAD -->
+    <section class="filter-section" aria-label="Filtro de recursos">
+        <label for="age-filter"><strong>Filtrar por nivel educativo (US-05):</strong></label>
+        <select id="age-filter" onchange="filterContent()">
+            <option value="todos">Mostrar Todos</option>
+            <option value="infantil">Infantil</option>
+            <option value="primaria">Primaria</option>
+            <option value="secundaria">Secundaria</option>
+            <option value="adultos">Adultos</option>
+        </select>
+    </section>
+
+    <!-- ÁREA DE CONTENIDOS EDUCATIVOS -->
+    <main>
+        <div class="content-grid" id="content-container">
+            <!-- Los artículos se generan dinámicamente con JavaScript -->
+        </div>
+    </main>
+
+    <script>
+        /* ===================================================
+           DATOS DE PRUEBA (Backlog Items representados)
+           =================================================== */
+        const articles = [
+            {
+                id: 1,
+                title: "Los Colores y las Formas",
+                category: "infantil",
+                categoryLabel: "Infantil",
+                description: "Aprende los colores primarios y las figuras geométricas básicas con ejemplos sencillos.",
+                pdfName: "Ficha_Colores_Infantil.pdf",
+                pdfSize: "1.1 MB"
+            },
+            {
+                id: 2,
+                title: "Introducción a la Suma y Resta",
+                category: "primaria",
+                categoryLabel: "Primaria",
+                description: "Guía paso a paso para resolver operaciones matemáticas fundamentales.",
+                pdfName: "Guia_Matematicas_Primaria.pdf",
+                pdfSize: "1.8 MB"
+            },
+            {
+                id: 3,
+                title: "Ecosistemas y Medio Ambiente",
+                category: "secundaria",
+                categoryLabel: "Secundaria",
+                description: "Análisis del equilibrio ecológico, cadenas alimenticias y conservación ambiental.",
+                pdfName: "Resumen_Ecosistemas.pdf",
+                pdfSize: "1.5 MB"
+            },
+            {
+                id: 4,
+                title: "Educación Financiera Básica",
+                category: "adultos",
+                categoryLabel: "Adultos",
+                description: "Conceptos sobre presupuesto familiar, ahorro y gestión de crédito personal.",
+                pdfName: "Manual_Finanzas_Personales.pdf",
+                pdfSize: "1.9 MB"
+            }
+        ];
+
+        /* ===================================================
+           LÓGICA JAVASCRIPT - HISTORIAS DE USUARIO
+           =================================================== */
+
+        // US-01: Control de Tamaño de Fuente
+        let currentFontSize = 16;
+        function adjustFontSize(delta) {
+            currentFontSize += delta;
+            if (currentFontSize < 12) currentFontSize = 12; // Límite inferior
+            if (currentFontSize > 24) currentFontSize = 24; // Límite superior
+            document.body.style.setProperty('--font-size', currentFontSize + 'px');
+        }
+
+        function resetFontSize() {
+            currentFontSize = 16;
+            document.body.style.setProperty('--font-size', '16px');
+        }
+
+        // US-01: Control de Alto Contraste (WCAG 2.1 AA)
+        function toggleHighContrast() {
+            document.body.classList.toggle('high-contrast');
+        }
+
+        // US-05: Lógica de Filtrado por Categoría/Edad
+        function filterContent() {
+            const selectedCategory = document.getElementById('age-filter').value;
+            const container = document.getElementById('content-container');
+            container.innerHTML = ''; // Limpiar contenedor
+
+            const filteredArticles = selectedCategory === 'todos' 
+                ? articles 
+                : articles.filter(art => art.category === selectedCategory);
+
+            if (filteredArticles.length === 0) {
+                container.innerHTML = '<p>No se encontraron recursos para este nivel.</p>';
+                return;
+            }
+
+            filteredArticles.forEach(art => {
+                const card = document.createElement('article');
+                card.className = 'card';
+                card.innerHTML = `
+                    <span class="badge">${art.categoryLabel}</span>
+                    <h2>${art.title}</h2>
+                    <p>${art.description}</p>
+                    <!-- US-02: Descarga de Recursos Imprimibles -->
+                    <a href="#" class="btn-download" onclick="simularDescarga('${art.pdfName}')" aria-label="Descargar PDF ${art.title}">
+                        📄 Descargar PDF <span class="pdf-size">(${art.pdfSize})</span>
+                    </a>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // US-02: Simulación de Descarga de PDF (< 2MB)
+        function simularDescarga(fileName) {
+            alert(`[US-02 Demostración]: Iniciando descarga del archivo de lectura accesible: "${fileName}" (Comprimido a menos de 2MB).`);
+        }
+
+        // Cargar todos los contenidos al iniciar la página
+        window.onload = filterContent;
+    </script>
+</body>
+</html>
