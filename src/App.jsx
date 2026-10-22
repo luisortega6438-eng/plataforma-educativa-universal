@@ -1,3 +1,5 @@
+import EjercicioLudico from './components/EjercicioLudico';
+import AudioAula from './components/AudioAula';
 import React, { useState } from 'react';
 import './App.css';
 
@@ -122,6 +124,12 @@ export default function App() {
               </article>
             ))
           )}
+          <hr style={{ margin: '30px 0' }} />
+
+      {/* 2. COMPONENTES DEL SPRINT 3 (Agrégalos al final de tu vista) */}
+      <h2>Fase 3: Gamificación y Audio-Aulas</h2>
+      <EjercicioLudico />
+      <AudioAula />
         </div>
       </main>
     </div>
