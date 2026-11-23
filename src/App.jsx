@@ -2,6 +2,7 @@ import EjercicioLudico from './components/EjercicioLudico';
 import AudioAula from './components/AudioAula';
 import React, { useState } from 'react';
 import './App.css';
+import MenuProyecto from './components/MenuProyecto';
 
 // Datos del Product Backlog (US-01, US-02, US-05)
 const articlesData = [
@@ -73,6 +74,7 @@ export default function App() {
     <div className={`main-wrapper ${highContrast ? 'high-contrast' : ''}`} style={{ fontSize: `${fontSize}px` }}>
       <header>
         <h1>Plataforma Educativa Universal</h1>
+        <MenuProyecto />
         <p>Prototipo Funcional - Incremento Sprint 1 (MVP desarrollado en React)</p>
       </header>
 
@@ -104,7 +106,7 @@ export default function App() {
       </section>
 
       {/* ÁREA DE CONTENIDOS EDUCATIVOS */}
-      <main>
+      <main id="main-content">
         <div className="content-grid">
           {filteredArticles.length === 0 ? (
             <p>No se encontraron recursos para este nivel.</p>
