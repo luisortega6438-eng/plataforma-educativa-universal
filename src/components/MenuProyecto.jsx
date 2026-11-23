@@ -15,6 +15,7 @@ const CONFIG_ENLACES = {
   
   // Documentación de gestión (Product Backlog & Schedule)
   documentacionScrum: 'https://docs.google.com/document/d/1xNrcUrBVYmoKM8r0bpWhXNttZLLkUD00N89e6GwvJY4/edit?usp=sharing'
+                      'https://drive.google.com/drive/folders/1J5xvcuqvHq9yRbUsD_BHAfHtS3u8ypQ6?usp=sharing'
 };
 
 const MODIFICACIONES_REALIZADAS = [
