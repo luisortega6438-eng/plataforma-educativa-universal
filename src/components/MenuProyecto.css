@@ -1,0 +1,161 @@
+.menu-proyecto-contenedor {
+  position: relative;
+  display: inline-block;
+}
+
+.btn-menu-proyecto {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #0b4f6c;
+  border: 2px solid #ffffff;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+.btn-menu-proyecto:hover,
+.btn-menu-proyecto:focus-visible {
+  background-color: #012a3a;
+  outline: 3px solid #ffbf00;
+  outline-offset: 2px;
+}
+
+.dropdown-menu-proyecto {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.5rem);
+  z-index: 1000;
+  width: min(21rem, 90vw);
+  margin: 0;
+  padding: 0.5rem;
+  list-style: none;
+  background-color: #ffffff;
+  color: #111827;
+  border: 2px solid #0b4f6c;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.item-menu-proyecto {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  text-align: left;
+  text-decoration: none;
+  color: #111827;
+  background: transparent;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.item-menu-proyecto span {
+  font-size: 0.82rem;
+  color: #374151;
+  margin-top: 0.15rem;
+}
+
+.item-menu-proyecto:hover,
+.item-menu-proyecto:focus-visible {
+  background-color: #e0f2fe;
+  color: #0b4f6c;
+  outline: 2px solid #0b4f6c;
+}
+
+/* Modal de Reporte de Modificaciones */
+.modal-reporte-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal-reporte-contenido {
+  width: min(56rem, 100%);
+  max-height: 88vh;
+  overflow-y: auto;
+  background-color: #ffffff;
+  color: #111827;
+  border: 2px solid #0b4f6c;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+}
+
+.modal-reporte-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.modal-reporte-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #0b4f6c;
+}
+
+.btn-cerrar-modal {
+  padding: 0.45rem 0.85rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  background-color: #991b1b;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+.btn-cerrar-modal:focus-visible {
+  outline: 3px solid #ffbf00;
+  outline-offset: 2px;
+}
+
+.tabla-responsiva {
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.tabla-modificaciones {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.tabla-modificaciones th,
+.tabla-modificaciones td {
+  border: 1px solid #9ca3af;
+  padding: 0.6rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.tabla-modificaciones th {
+  background-color: #0b4f6c;
+  color: #ffffff;
+}
+
+.modal-reporte-enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.modal-reporte-enlaces a {
+  font-weight: 700;
+  color: #0b4f6c;
+  text-decoration: underline;
+}
