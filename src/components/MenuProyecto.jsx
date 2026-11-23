@@ -3,19 +3,17 @@ import './MenuProyecto.css';
 
 // Configura aquí tus enlaces oficiales
 const CONFIG_ENLACES = {
-  // Sustituye por el enlace a tu carpeta de Google Drive con los PDFs de las Unidades 1 a 4
-  // o deja la ruta a una carpeta /docs dentro de tu repositorio
-  actividadesCurso: 'https://drive.google.com/drive/folders/TU_ID_DE_CARPETA_AQUI',
-  
-  // Enlace al repositorio o sistema desplegado
+  // Carpeta oficial en Google Drive con las actividades del curso (Unidades 1 a 4)
+  actividadesCurso: 'https://drive.google.com/drive/folders/1J5xvcuqvHq9yRbUsD_BHafHtS3u8ypQ6?usp=sharing',
+
+  // Enlace al repositorio oficial
   sistemaImplementado: 'https://github.com/luisortega6438-eng/plataforma-educativa-universal',
-  
+
   // Descarga directa automática del código fuente comprimido (.zip) desde tu rama main de GitHub
   codigoComprimidoZip: 'https://github.com/luisortega6438-eng/plataforma-educativa-universal/archive/refs/heads/main.zip',
-  
+
   // Documentación de gestión (Product Backlog & Schedule)
   documentacionScrum: 'https://docs.google.com/document/d/1xNrcUrBVYmoKM8r0bpWhXNttZLLkUD00N89e6GwvJY4/edit?usp=sharing'
-                      'https://drive.google.com/drive/folders/1J5xvcuqvHq9yRbUsD_BHAfHtS3u8ypQ6?usp=sharing'
 };
 
 const MODIFICACIONES_REALIZADAS = [
